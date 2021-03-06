@@ -5,9 +5,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script defer src="index.js"></script>
-  <title>Document</title>
+  <title>Asana-Lite</title>
 </head>
 <body>
-  Test
+  <nav></nav>
+  <main>
+    <section>
+      <form action="https://asana-backend.herokuapp.com/cards/" method="POST">
+        <input type="text" name="name" value="Task Name">
+        <input type="text" name="description" value="Description">
+        <select name="user_id" id="">
+          <option value="3">Blake</option>
+        </select>
+        <input type="submit" value="Submit">
+      </form>
+    </section>
+    <section id="cards">
+
+    </section>
+  </main>
 </body>
 </html>
