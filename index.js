@@ -41,7 +41,7 @@ const createCard = (card) => {
   const deleteLink = document.createElement('a')
   const updateLink = document.createElement('a')
 
-  deleteLink.href = `${asanaBackendURL}/cards/${card.id}`
+  // deleteLink.href = `${asanaBackendURL}/cards/${card.id}`
   deleteLink.textContent = "Delete"
   deleteLink.classList.add('font-normal','inline-block','pt-2','text-sm')
   updateLink.id = `update_${card.id}`
