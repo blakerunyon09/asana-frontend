@@ -54,6 +54,39 @@ const createCard = (card) => {
     })
       
   })
+  updateLink.addEventListener('click', (e) => {
+    const formDiv = document.createElement('div')
+
+    formDiv.innerHTML = `
+      <input type="text" name="name" placeholder="Task Name" class="input">
+      <input type="text" name="description" placeholder="Describe Task" class="input">
+      <select name="user_id" id="selector_user_id_update" class="px-1 rounded border-2 border-gray-500">
+      </select>
+      <input type="submit" value="Submit" class="px-1 rounded border-2 border-gray-500" id="update_submit">
+    `
+    e.target.parentNode.append(formDiv)
+
+    const selectUpdate = document.querySelector('#selector_user_id_update')
+
+    fetch(asanaBackendURL + usersIndex)
+      .then(handleResponse)
+      .then(users => users.forEach(
+        user => {
+          const option = document.createElement('option')
+
+          option.value = user.id
+          option.textContent = user.username
+
+          selectUpdate.append(option)
+      }))
+
+    const updateSubmit = document.querySelector('#update_submit')
+
+    updateSubmit.addEventListener('click', () => {
+      console.log("Cha.")
+    })
+
+  })
   div.append(h3, p, deleteLink, updateLink)
 
   return div
