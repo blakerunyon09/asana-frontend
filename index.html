@@ -8,15 +8,13 @@
   <link rel="stylesheet" href="css/style.css">
   <title>Asana-Lite</title>
 </head>
-<body>
+<body class="bg-gray-50">
     <header class="header">
       <div class="w-full flex">
         <span class="inline-block text-xl font-bold">Asana Lite</span>
       </div>
       <div class="flex items-center">
-        <input type="text" class="rounded border border-gray-300">
-        <span class="btn bg-blue-400">Create</span>
-        <span class="btn bg-green-400">BR</span>
+        <input type="text" value="  Search Tasks" class="rounded border border-gray-300">
       </div>
     </header>
     <main>
@@ -24,8 +22,7 @@
         <form action="https://asana-backend.herokuapp.com/cards/" method="POST">
           <input type="text" name="name" placeholder="Task Name" class="input">
           <input type="text" name="description" placeholder="Describe Task" class="input">
-          <select name="user_id" id="user-id" class="px-1 rounded border-2 border-gray-500 hidden">
-            <option value="7">Blake</option>
+          <select name="user_id" id="selector_user_id" class="px-1 rounded border-2 border-gray-500">
           </select>
           <input type="submit" value="Submit" class="px-1 rounded border-2 border-gray-500">
         </form>

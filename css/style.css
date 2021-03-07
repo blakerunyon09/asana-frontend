@@ -52,7 +52,7 @@
 
 .card {
   --tw-bg-opacity: 1;
-  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+  background-color: rgba(219, 234, 254, var(--tw-bg-opacity));
   border-radius: 0.25rem;
   margin: 0.5rem;
   padding: 1rem;
