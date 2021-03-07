@@ -5,24 +5,33 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script defer src="index.js"></script>
+  <link rel="stylesheet" href="css/style.css">
   <title>Asana-Lite</title>
 </head>
 <body>
-  <nav></nav>
-  <main>
-    <section>
-      <form action="https://asana-backend.herokuapp.com/cards/" method="POST">
-        <input type="text" name="name" value="Task Name">
-        <input type="text" name="description" value="Description">
-        <select name="user_id" id="">
-          <option value="3">Blake</option>
-        </select>
-        <input type="submit" value="Submit">
-      </form>
-    </section>
-    <section id="cards">
-
-    </section>
-  </main>
+    <header class="header">
+      <div class="w-full flex">
+        <span class="inline-block text-xl font-bold">Asana Lite</span>
+      </div>
+      <div class="flex items-center">
+        <input type="text" class="rounded border border-gray-300">
+        <span class="btn bg-blue-400">Create</span>
+        <span class="btn bg-green-400">BR</span>
+      </div>
+    </header>
+    <main>
+      <div class="flex justify-center m-4">
+        <form action="https://asana-backend.herokuapp.com/cards/" method="POST">
+          <input type="text" name="name" placeholder="Task Name" class="input">
+          <input type="text" name="description" placeholder="Describe Task" class="input">
+          <select name="user_id" id="user-id" class="px-1 rounded border-2 border-gray-500 hidden">
+            <option value="7">Blake</option>
+          </select>
+          <input type="submit" value="Submit" class="px-1 rounded border-2 border-gray-500">
+        </form>
+      </div>
+      <div id="card_container" class="card-container">
+      </div>
+    </main>
 </body>
 </html>
