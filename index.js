@@ -46,7 +46,14 @@ const createCard = (card) => {
   updateLink.href = `https://asana-backend.herokuapp.com/cards/${card.id}`
   updateLink.textContent = "Update"
   updateLink.classList.add('font-normal','inline-block','pt-2','pl-2','text-sm')
+  deleteLink.addEventListener('click', (e) => {
+    e.target.parentNode.remove()
 
+    fetch(`https://asana-backend.herokuapp.com/cards/${card.id}`,{
+      method: 'DELETE'
+    })
+      
+  })
   div.append(h3, p, deleteLink, updateLink)
 
   return div
