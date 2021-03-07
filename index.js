@@ -1,4 +1,5 @@
 const asanaBackendURL = "https://asana-backend.herokuapp.com"
+// const asanaBackendURL = "http://localhost:3000"
 const usersIndex = "/users/"
 const cardsIndex = "/cards/"
 const cardContainer = document.querySelector('#card_container')
@@ -40,7 +41,7 @@ const createCard = (card) => {
   const deleteLink = document.createElement('a')
   const updateLink = document.createElement('a')
 
-  deleteLink.href = `https://asana-backend.herokuapp.com/cards/${card.id}`
+  deleteLink.href = `${asanaBackendURL}/cards/${card.id}`
   deleteLink.textContent = "Delete"
   deleteLink.classList.add('font-normal','inline-block','pt-2','text-sm')
   updateLink.id = `update_${card.id}`
@@ -49,7 +50,7 @@ const createCard = (card) => {
   deleteLink.addEventListener('click', (e) => {
     e.target.parentNode.remove()
 
-    fetch(`https://asana-backend.herokuapp.com/cards/${card.id}`,{
+    fetch(`${asanaBackendURL}/cards/${card.id}`,{
       method: 'DELETE'
     })
       
@@ -97,7 +98,6 @@ const createCard = (card) => {
         method: 'PATCH',
       })
         .then(response => response.json())
-        .then(data => console.log(data))
     })
     }
   })
