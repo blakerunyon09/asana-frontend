@@ -43,7 +43,6 @@ const createCard = (card) => {
   deleteLink.href = `https://asana-backend.herokuapp.com/cards/${card.id}`
   deleteLink.textContent = "Delete"
   deleteLink.classList.add('font-normal','inline-block','pt-2','text-sm')
-  updateLink.href = `https://asana-backend.herokuapp.com/cards/${card.id}`
   updateLink.id = `update_${card.id}`
   updateLink.textContent = "Update"
   updateLink.classList.add('font-normal','inline-block','pt-2','pl-2','text-sm')
@@ -67,17 +66,13 @@ const createCard = (card) => {
     formDiv.id = "update_form"
 
     formDiv.innerHTML = `
-      <input type="text" name="name" placeholder="Task Name" class="input">
-      <input type="text" name="description" placeholder="Describe Task" class="input">
-      <select name="user_id" id="selector_user_id_update" class="px-1 rounded border-2 border-gray-500">
+      <input type="text" name="name" placeholder="Task Name" id="name_update" class="input">
+      <input type="text" name="description" placeholder="Describe Task" id="description_update" class="input">
+      <select name="user_id" id="selector_user_id_update" class="px-1 rounded border-2 border-gray-500" id="id_update">
       </select>
       <input type="submit" value="Submit" class="px-1 rounded border-2 border-gray-500" id="update_submit">
     `
     e.target.parentNode.append(formDiv)
-
-    if(e.target.parentNode){
-      // console.log(e.target.parentNode.contains(formDiv))
-    }
 
     const selectUpdate = document.querySelector('#selector_user_id_update')
 
@@ -92,12 +87,18 @@ const createCard = (card) => {
 
           selectUpdate.append(option)
       }))
+    const updateSubmit = document.querySelector('#update_submit')
+    updateSubmit.addEventListener('click', () => {
+      const nameUpdate = document.querySelector('#name_update').value
+      const descriptionUpdate = document.querySelector('#description_update').value
+      const option = document.querySelector('option').value
 
-    // const updateSubmit = document.querySelector('#update_submit')
-
-    // updateSubmit.addEventListener('click', () => {
-    //   console.log("Cha.")
-    // })
+      fetch(asanaBackendURL + cardsIndex + card.id + `?name=${nameUpdate}&description=${descriptionUpdate}&user_id=${option}`, {
+        method: 'PATCH',
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+    })
     }
   })
   div.append(h3, p, deleteLink, updateLink)
