@@ -89,15 +89,20 @@ const createCard = (card) => {
           selectUpdate.append(option)
       }))
     const updateSubmit = document.querySelector('#update_submit')
-    updateSubmit.addEventListener('click', () => {
+    updateSubmit.addEventListener('click', (e) => {
       const nameUpdate = document.querySelector('#name_update').value
       const descriptionUpdate = document.querySelector('#description_update').value
       const option = document.querySelector('option').value
 
       fetch(asanaBackendURL + cardsIndex + card.id + `?name=${nameUpdate}&description=${descriptionUpdate}&user_id=${option}`, {
         method: 'PATCH',
-      })
-        .then(response => response.json())
+      }).then(response => response.json())
+
+      e.target.parentNode.parentNode.querySelector('h3').textContent = nameUpdate
+      e.target.parentNode.parentNode.querySelector('p').textContent = descriptionUpdate
+      e.target.parentNode.remove()
+      updateButton.textContent = "Update"
+
     })
     }
   })
