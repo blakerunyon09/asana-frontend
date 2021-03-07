@@ -44,6 +44,7 @@ const createCard = (card) => {
   deleteLink.textContent = "Delete"
   deleteLink.classList.add('font-normal','inline-block','pt-2','text-sm')
   updateLink.href = `https://asana-backend.herokuapp.com/cards/${card.id}`
+  updateLink.id = `update_${card.id}`
   updateLink.textContent = "Update"
   updateLink.classList.add('font-normal','inline-block','pt-2','pl-2','text-sm')
   deleteLink.addEventListener('click', (e) => {
@@ -55,7 +56,15 @@ const createCard = (card) => {
       
   })
   updateLink.addEventListener('click', (e) => {
+    const updateButton = document.querySelector(`#update_${card.id}`)
+    const hasUpdateForm = document.querySelector('#update_form')
+    if(hasUpdateForm){
+      hasUpdateForm.remove()
+      updateButton.textContent = "Update"
+    } else{
+    updateButton.textContent = "Cancel"
     const formDiv = document.createElement('div')
+    formDiv.id = "update_form"
 
     formDiv.innerHTML = `
       <input type="text" name="name" placeholder="Task Name" class="input">
@@ -65,6 +74,10 @@ const createCard = (card) => {
       <input type="submit" value="Submit" class="px-1 rounded border-2 border-gray-500" id="update_submit">
     `
     e.target.parentNode.append(formDiv)
+
+    if(e.target.parentNode){
+      // console.log(e.target.parentNode.contains(formDiv))
+    }
 
     const selectUpdate = document.querySelector('#selector_user_id_update')
 
@@ -80,12 +93,12 @@ const createCard = (card) => {
           selectUpdate.append(option)
       }))
 
-    const updateSubmit = document.querySelector('#update_submit')
+    // const updateSubmit = document.querySelector('#update_submit')
 
-    updateSubmit.addEventListener('click', () => {
-      console.log("Cha.")
-    })
-
+    // updateSubmit.addEventListener('click', () => {
+    //   console.log("Cha.")
+    // })
+    }
   })
   div.append(h3, p, deleteLink, updateLink)
 
